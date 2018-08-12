@@ -1,0 +1,9 @@
+git remote rm origin 删除云端的仓库的关联
+git remote add origin .... 添加云端仓库联系
+git push -u origin master 推送至云端
+git pull origin master 搬运到本地
+git checkout .. 恢复文件
+git rm -rf .. 删除文件
+git remote -v 推送地址
+
+

@@ -1,0 +1,66 @@
+git init 初始化
+git add ...txt 添加文件
+git commit -m "..." 版本注释
+git status 查看状态
+git diff 找不同
+git log 日志 （--pretty=oneline） 打印在一行
+git reset -hard HEAD^ 回档前一个版本（类比 HEAD^^ 前两个 HEAR~100 前100个）
+git reset -hard ......（版本号 通过log可以查看）
+git reflog 具体的日志（主要包含回档信息）
+
+
+git bash命令 cat 查看 vi shell编辑  touch 新建
+
+
+<html></html> 根
+<head></head> 抬头 不会被用户看到 配置信息？
+<body></body> 主体部分，包含文本，图片，视频，游戏等等
+<meta charset = "utf-8"> 字符编码
+<title></title> title(网页名)
+
+<img src="images/firefox-icon.png" alt="My test image"> 插入一张图片 alt：无障碍的属性（盲人）
+<h1></h1> 标题名
+<p> </p> 段落，文本
+<ul></ul> 不区分顺序
+<ol></ol> 区分顺序（1,2,3）排序不代表元素 其中元素标识为<li>
+<a href = ".....(web)"> ...(name) </a> 链接
+<li></li> 选项list
+
+
+
+CSS
+p {
+	color:red;
+}
+p 表示为选择器 意思是你选的元素{元素选择（单选）：p,li,h1,h2;#... 表示选取特殊的ID，例如<p id = ...>;.my-class 代表选取的是class,例如<p class=my-class>;img[src] 表示选取的是特定的属性，此处选取的是<img src='...'>;a:hover 特定的选择器 选择<a>.当鼠标悬停时}
+color:red; 表示为声明，即你要做什么
+color 属性
+red 属性值
+
+属性相关：font-size 字体大小（单位：px）；line-height 行高(px) ；text-align 字体位置（center）；letter-spacing 字母间隔(px)
+padding 内边距；border 边框；margin 外边距
+https://mdn.mozillademos.org/files/9443/box-model.png
+body(主体)：width ; background-color 背景颜色 ;color 颜色（元素）；text-shadow 文本阴影；display 显示模式
+
+VIM
+快捷键：gg 文头；shift+g 文末；x 单删除；dd 删整行；i 编辑模式；o 添加一行编辑；v 选择模式；y/p 复制/粘贴；u 撤销；0 行首；$ 行尾；rm -rf 删除
+
+JS
+querySelector() 函数-获取{常见：document.querySelector(h1/q/img/h2/li...)}； textContent 属性-文本{常用:myVariable.textContent='...'}；alter() 函数-警告;
+onclick() 点击函数 ; setAttribute('name','地址') 设置（强制）属性; getItem('name') 获取name的具体值 ;setItem('name','具体值(名字)') ; 
+json大小写敏感 ： backgroundColor ≠ backgroundcolor!
+
+js
+数据类型：字符串，数字，布尔值，数组，对象（在JS中几乎所有都是对象）
+注释 /* xxxxxxx */
+运算符：+,-,*,/,===(等于),!/!==(不等于)
+if (条件) {动作} else (条件) {动作} 
+function naeme(Var1,Var2...){动作}  或者  ...name=function(){...动作}
+
+
+
+
+
+
+
+
