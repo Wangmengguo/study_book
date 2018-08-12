@@ -7,3 +7,53 @@ git rm -rf .. 删除文件
 git remote -v 推送地址
 
 
+django
+urls 管理网址（网站url到view的映射）
+views 管理逻辑，或许有点难以理解，但事实上你需要配置的逻辑都在里面，例如当你选择投票之后它能够生成的网址/404都是由它决定的
+models 定义最底层的选项，例如，choice，question：当然还包括其中的种种属性都由他来定义。
+django中的html都是为了逻辑服务的。另外css是为html服务的。（html在polls/polls;css在polls/template里面）
+之前学习了官网的教程，今天开始学习MDN上的教程（https://developer.mozilla.org/zh-CN/docs/Learn/Server-side/Django/skeleton_website）
+希望能够加深我对django和Html的理解。
+
+migration 存储，修改数据时，自动更新你的数据库
+django-admin startproject xxxx 开始一个项目
+python manage.py startapp xxxx 创建一个新的app
+在settings.py中的INSTALLED_APPS = [] 添加新的app xxxx.apps.XxxConfig 注意大小写！ ---添加app
+SQLlite 无需更改（DATABASES）
+特别注意 需要更改时区 更改为 'Asain/Shanghai'
+不重要的两点 DEBUG：true会提示你漏洞；SECRET_KEY 密钥非常重要
+
+from django.conf.urls import include
+urlpatterns += [
+    url(r'^catalog/', include('catalog.urls')),
+]
+#这个写法非常亮眼啊
+#先映入include，然后将catalog中的所有网址都单独由/catalog.urls来处理
+
+from django.views.generic import RedirectView
+urlpatterns += [
+	url(r^'$',RedirectView.as_view(url='/catalog/',permanent=True)),
+]
+#相当于将根网址 从127.0.0.1.8000变成了127.0.0.1.8000/catalog
+
+由于django默认不提供html,css这样的静态文件，但事实上我们在开发网页时是需要这些文件的
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)
+
+源代码中为url 事实上应该是path 解决方法：from django.conf.urls import url
+python manage.py makemigrations
+python manage.py migrate
+
+#创建迁移，实施迁移
+
+Python manage.py runserver (127.0.0.1:8000)
+#运行 事实上我们被重定向到了127.0.0.1:8000、catalog 和预期的一样（37行）
+#运行了一个理所当然的404错误 毕竟我们的catalog里面的urls是空的，[from django.conf.urls import url  from . import view urlpatterns = [] /catalog/urls.py]
+
+
+
+
+
