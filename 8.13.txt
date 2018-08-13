@@ -1,0 +1,59 @@
+事实上在我们决定建立一个较为完整的图书网站时 我们需要插入'ID',作者,书名等等一系列相关的信息
+这比我们之前在Django做的投票软件要复杂得多
+看过大佬的不少作品 其实一开始都是复现或者说复制，慢慢的尝试自己去写
+昨天完成了搭建 django-admin startproject xxxx; python manage.py startapp xxx;python manage.py makemigrations;python manage.py migrate
+完成最基础的搭建：404 毕竟没写catalog里面的内容
+
+今天开始填充内容
+
+my_field_name = models.CharField(max_length=20, help_text="Enter field documentation")
+my_xxx 名字 models.CharField --> CharField 表示的是输入的字符串为数字或者英文
+max_length 最大长度(属性) help_text 帮助文本
+其中字段的名字 是为了更好地引用它 如果没有定义verbose_name则 将_改为空格，每个单词的第一个字母大写作为标签
+字段的公用参数 常见的：help_text；verbose_name:可读性名称（具体名称）；default 默认值;null 空值；blank 空白(一般运用于NULL = True,BLANK = True);choices 选项(对应的是字段的盒子？) ；primary_key 主键（用于识别），如果没有就自动加上
+
+常用的字段：CharField 数字+英文字符串;integerField 整数字段；DateField/DateTimeField 时间，相关的参数auto_now（当前时间）,auto_now_add（添加时间）,default;
+EmailField 邮件;FileField/ImageField 文件、图片;AutoField 自动递增（IntegerField特殊）;ForeignKey 一对多；ManyToManyField 多对多
+
+class Meta:
+    ordering = ["-my_field_name"]
+控制顺序（元数据）
+
+def __str__(self):
+    return self.field_name
+类方法 返回一个可读的字符串
+
+def get_absolute_url(self):
+    """
+    Returns the url to access a particular instance of the model.
+    """
+    return reverse('model-detail-view', args=[str(self.id)])
+方法 返回一个记录的网址 args 可变参数 ； 'model-detail-view' 名字
+
+# Create a new record using the model's constructor.
+a_record = MyModelName(my_field_name="Instance #1")
+
+# Save the object into the database.
+a_record.save()
+创建和保存记录 
+
+# Access model field values using Python attributes.
+print(a_record.id) #should return 1 for the first record. 
+print(a_record.my_field_name) # should print 'Instance #1'
+
+# Change record by modifying the fields, then calling save().
+a_record.my_field_name="New Instance Name"
+a_record.save()
+更改值 非常不实用
+
+all_books = Book.objects.all()
+object.all 查找所有记录
+
+wild_books = Book.objects.filter(title__contains='wild')
+number_wild_books = Book.objects.filter(title__contains='wild').count()
+filter 表示筛选过滤 匹配字段； count()计数
+
+books_containing_genre = Book.objects.filter(genre__name__icontains='fiction')  # Will match on: Fiction, Science fiction, non-fiction etc.
+都是双下划线 __/_ 注意区分
+
+

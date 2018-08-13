@@ -5,7 +5,7 @@ git pull origin master 搬运到本地
 git checkout .. 恢复文件
 git rm -rf .. 删除文件
 git remote -v 推送地址
-
+git remote add origin git@github.com:Wangmengguo/xxxx 添加远端地址
 
 django
 urls 管理网址（网站url到view的映射）
